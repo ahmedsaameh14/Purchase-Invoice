@@ -42,6 +42,7 @@ export class InvoiceShellComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
+    this.setupFormListeners();
   }
 
   private initForm() {
@@ -84,4 +85,37 @@ export class InvoiceShellComponent implements OnInit {
     });
     this.itemsFormArray.push(row);
   }
+
+  private setupFormListeners() {
+  this.itemsFormArray.valueChanges.subscribe((values: any[]) => {
+    let grandTotal = 0;
+
+    values.forEach((item, index) => {
+      // 1. Find Product
+      const selectedProduct = this.products.find(p => p.code === item.itemCode);
+      const row = this.itemsFormArray.at(index);
+
+      if (selectedProduct && row.get('itemName')?.value !== selectedProduct.name) {
+        row.patchValue({
+          itemName: selectedProduct.name,
+          unitPrice: selectedProduct.unitPrice
+        }, { emitEvent: false });
+      }
+
+      // 2. Calculate Line Total
+      // Use the latest values from the form row directly to be safe
+      const qty = row.get('quantity')?.value || 0;
+      const price = row.get('unitPrice')?.value || 0;
+      const lineTotal = qty * price;
+
+      row.get('lineTotal')?.patchValue(lineTotal, { emitEvent: false });
+      
+      // Add to our running grand total
+      grandTotal += lineTotal;
+    });
+
+    // 3. Update Grand Total
+    this.invoiceForm.get('grandTotal')?.patchValue(grandTotal, { emitEvent: false });
+  });
+}
 }
