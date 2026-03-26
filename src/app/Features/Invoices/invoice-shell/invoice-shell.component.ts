@@ -14,6 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MOCK_PRODUCTS, MOCK_SUPPLIERS } from '../Data/mock-data';
 import { InvoiceHeaderComponent } from '../Components/invoice-header/invoice-header.component';
+import { InvoiceItemsTableComponent } from '../Components/invoice-items-table/invoice-items-table.component';
 
 @Component({
   selector: 'app-invoice-shell',
@@ -27,6 +28,7 @@ import { InvoiceHeaderComponent } from '../Components/invoice-header/invoice-hea
     MatFormFieldModule,
     MatInputModule,
     InvoiceHeaderComponent,
+    InvoiceItemsTableComponent,
   ],
   templateUrl: './invoice-shell.component.html',
   styleUrl: './invoice-shell.component.css',

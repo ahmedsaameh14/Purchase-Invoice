@@ -17,10 +17,8 @@
 
         <mat-divider></mat-divider>
 
-        <section class="invoice-section">
-          <h3>Invoice Items</h3>
-          <div class="placeholder-box">Items Table Goes Here</div>
-        </section>
+        <app-invoice-items-table [itemsFormArray]="itemsFormArray" [products]="products" (addRow)="addItemRow()">
+        </app-invoice-items-table>
 
         <mat-divider></mat-divider>
 
