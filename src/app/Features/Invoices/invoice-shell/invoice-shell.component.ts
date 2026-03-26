@@ -15,6 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MOCK_PRODUCTS, MOCK_SUPPLIERS } from '../Data/mock-data';
 import { InvoiceHeaderComponent } from '../Components/invoice-header/invoice-header.component';
 import { InvoiceItemsTableComponent } from '../Components/invoice-items-table/invoice-items-table.component';
+import { CreateInvoiceRequest } from '../Models/invoice.model';
 
 @Component({
   selector: 'app-invoice-shell',
@@ -50,7 +51,7 @@ export class InvoiceShellComponent implements OnInit {
       // Header of Invoice
       header: this.fb.group({
         invoiceDate: [new Date(), Validators.required],
-        supplierName: ['', Validators.required],
+        supplierId: ['', Validators.required],
         notes: [''],
       }),
 
@@ -121,17 +122,11 @@ export class InvoiceShellComponent implements OnInit {
 
 saveInvoice() {
   if (this.invoiceForm.valid) {
-    // getRawValue() captures even the disabled fields (Totals and Names)
-    const finalData = this.invoiceForm.getRawValue();
-    
+    // Transform data from FormGroup to JSON
+    const finalData: CreateInvoiceRequest = this.invoiceForm.getRawValue();
     console.log('Final Invoice Data:', finalData);
-    
-    // Here is where you would call an API service, e.g.:
-    // this.invoiceService.create(finalData).subscribe(...)
-    
     alert('Invoice Saved Successfully! Check the console.');
   } else {
-    // Mark all fields as touched to show validation errors
     this.invoiceForm.markAllAsTouched();
     alert('Please fill all required fields.');
   }

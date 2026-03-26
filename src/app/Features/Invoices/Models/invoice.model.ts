@@ -3,37 +3,22 @@
 import { Product, Supplier } from './product.model';
 
 // ===== REQUEST DTO (What we send to backend) =====
-export interface CreateInvoiceRequest {
-  invoiceDate: string;  // ISO date format
-  supplierId: Supplier['id'];  // References Supplier.id
-  notes: string;
-  items: CreateInvoiceItemRequest[];
-}
-
-export interface CreateInvoiceItemRequest {
-  itemCode: Product['code'];  // References Product.code
-  quantity: number;
-}
-
-// ===== RESPONSE/DOMAIN Models (What backend returns or full data) =====
 export interface InvoiceHeader {
-  invoiceDate: Date;
+  invoiceDate: string;  // ISO string format for API
   supplierId: Supplier['id'];
-  supplierName: Supplier['name'];
   notes: string;
 }
 
 export interface InvoiceItem {
   itemCode: Product['code'];
-  itemName: Product['name'];      // Auto-filled from selected product
+  itemName: Product['name'];
   quantity: number;
-  unitPrice: Product['unitPrice'];              // Auto-filled from product
-  lineTotal: number;              // Calculated: quantity × unitPrice
+  unitPrice: Product['unitPrice'];
+  lineTotal: number;
 }
 
-export interface Invoice {
-  id?: number;           // Exists after backend saves it
+export interface CreateInvoiceRequest {
   header: InvoiceHeader;
   items: InvoiceItem[];
-  grandTotal: number;    // Sum of all line totals
+  grandTotal: number;
 }
