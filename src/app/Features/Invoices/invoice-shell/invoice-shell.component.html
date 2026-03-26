@@ -1,6 +1,6 @@
 <div class="invoice-wrapper">
   <mat-card class="invoice-card">
-    
+
     <mat-card-header>
       <mat-card-title>Purchase Invoice</mat-card-title>
       <mat-card-subtitle>Create a new entry for your records</mat-card-subtitle>
@@ -8,10 +8,11 @@
 
     <mat-card-content>
       <form [formGroup]="invoiceForm">
-        
+
         <section class="invoice-section">
           <h3>General Information</h3>
-          <div class="placeholder-box">Header Inputs Go Here</div>
+          <app-invoice-header [headerForm]="headerGroup" [suppliers]="suppliers">
+          </app-invoice-header>
         </section>
 
         <mat-divider></mat-divider>

@@ -21,7 +21,7 @@ import { Supplier } from '../../Models/product.model';
     MatDatepickerModule
   ],
   templateUrl: './invoice-header.component.html',
-  styleUrl: './invoice-header.component.scss'
+  styleUrl: './invoice-header.component.css'
 })
 export class InvoiceHeaderComponent {
   @Input() headerForm!: FormGroup;
