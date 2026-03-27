@@ -17,6 +17,7 @@ import { MOCK_PRODUCTS, MOCK_SUPPLIERS } from '../Data/mock-data';
 import { InvoiceHeaderComponent } from '../Components/invoice-header/invoice-header.component';
 import { InvoiceItemsTableComponent } from '../Components/invoice-items-table/invoice-items-table.component';
 import { CreateInvoiceRequest } from '../Models/invoice.model';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-invoice-shell',
@@ -31,6 +32,7 @@ import { CreateInvoiceRequest } from '../Models/invoice.model';
     MatInputModule,
     InvoiceHeaderComponent,
     InvoiceItemsTableComponent,
+    MatIconModule
   ],
   templateUrl: './invoice-shell.component.html',
   styleUrl: './invoice-shell.component.css',

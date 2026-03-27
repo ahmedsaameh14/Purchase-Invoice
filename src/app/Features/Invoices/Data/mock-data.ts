@@ -1,16 +1,16 @@
 import { Product, Supplier } from '../Models/product.model';
 
 export const MOCK_PRODUCTS: Product[] = [
-  { code: 'P001', name: 'Premium A4 Printer Paper (Box)', unitPrice: 280 },
-  { code: 'P002', name: 'Ergonomic Office Chair', unitPrice: 2500 },
-  { code: 'P003', name: 'Black Gel Ink Pens (Pack of 12)', unitPrice: 120 },
-  { code: 'P004', name: 'Desktop Organizer Set', unitPrice: 350 },
-  { code: 'P005', name: 'Wireless Mechanical Keyboard', unitPrice: 950 },
-  { code: 'P006', name: 'Hardcover Notebook (A5)', unitPrice: 95 },
-  { code: 'P007', name: 'Heavy Duty Stapler', unitPrice: 210 },
-  { code: 'P008', name: 'Adjustable LED Desk Lamp', unitPrice: 450 },
-  { code: 'P009', name: 'USB-C Docking Station', unitPrice: 1200 },
-  { code: 'P010', name: 'Large Whiteboard Marker Set', unitPrice: 180 }
+  { code: 'P001', name: 'A4 Paper (Box)', unitPrice: 280 },
+  { code: 'P002', name: 'Office Chair', unitPrice: 2500 },
+  { code: 'P003', name: 'Gel Pens (12pk)', unitPrice: 120 },
+  { code: 'P004', name: 'Desk Organizer', unitPrice: 350 },
+  { code: 'P005', name: 'Keyboard', unitPrice: 950 },
+  { code: 'P006', name: 'Notebook A5', unitPrice: 95 },
+  { code: 'P007', name: 'Stapler', unitPrice: 210 },
+  { code: 'P008', name: 'LED Desk Lamp', unitPrice: 450 },
+  { code: 'P009', name: 'USB-C Dock', unitPrice: 1200 },
+  { code: 'P010', name: 'Whiteboard Markers', unitPrice: 180 }
 ];
 
 export const MOCK_SUPPLIERS: Supplier[] = [
