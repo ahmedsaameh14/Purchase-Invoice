@@ -1,11 +1,15 @@
 .header-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1rem;
+  grid-template-columns: minmax(280px, 350px) 1fr;
+  gap: 1.5rem;
   margin-top: 0.5rem;
 
   mat-form-field {
     width: 100%;
+
+    ::ng-deep .mat-mdc-text-field-wrapper {
+      background-color: white;
+    }
 
     ::ng-deep .mat-mdc-form-field-outline {
       color: #e0e0e0;
@@ -25,15 +29,47 @@
     ::ng-deep .mat-mdc-form-field-focus-overlay {
       background-color: rgba(25, 118, 210, 0.04);
     }
+    
+    ::ng-deep .mat-mdc-select-value {
+      color: #424242;
+    }
+    
+    ::ng-deep .mat-mdc-select-arrow {
+      color: #757575;
+    }
+    
+    ::ng-deep input {
+      color: #424242;
+    }
+  }
+
+  .left-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
 
   .notes-field {
-    grid-column: 1 / -1;
+    align-self: stretch;
+    
+    ::ng-deep .mat-mdc-text-field-wrapper {
+      height: 100%;
+      background-color: white;
+    }
+    
+    ::ng-deep .mat-mdc-form-field-infix {
+      min-height: 100%;
+      padding-top: 1rem;
+    }
+    
+    textarea {
+      min-height: 100%;
+    }
   }
 }
 
 textarea {
-  resize: vertical;
+  resize: none;
   min-height: 80px;
 }
 
@@ -42,24 +78,20 @@ textarea {
 /* Large Tablets & Landscape */
 @media (min-width: 1100px) and (max-width: 1366px) {
   .header-grid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
+    grid-template-columns: minmax(250px, 320px) 1fr;
+    gap: 1.25rem;
   }
 }
 
 /* Tablets (iPad, Galaxy Tab, narrow devices) */
 @media (min-width: 600px) and (max-width: 1099px) {
   .header-grid {
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 0.9rem;
+    grid-template-columns: minmax(220px, 300px) 1fr;
+    gap: 1rem;
     margin-top: 0.75rem;
 
     mat-form-field {
       min-height: 56px;
-    }
-
-    .notes-field {
-      grid-column: 1 / -1;
     }
   }
 
@@ -71,10 +103,16 @@ textarea {
 @media (max-width: 768px) {
   .header-grid {
     grid-template-columns: 1fr;
-    gap: 0.75rem;
+    gap: 1rem;
+  }
 
-    .notes-field {
-      grid-column: auto;
+  .left-section {
+    gap: 1rem;
+  }
+  
+  mat-form-field {
+    ::ng-deep .mat-mdc-text-field-wrapper {
+      max-width: 100%;
     }
   }
 }
