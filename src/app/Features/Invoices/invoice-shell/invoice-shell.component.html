@@ -17,7 +17,7 @@
 
         <mat-divider></mat-divider>
 
-        <app-invoice-items-table [itemsFormArray]="itemsFormArray" [products]="products" (addRow)="addItemRow()">
+        <app-invoice-items-table [itemsFormArray]="itemsFormArray" [products]="products" [canAddItem]="canAddItem" (addRow)="addItemRow()">
         </app-invoice-items-table>
 
         <mat-divider></mat-divider>
@@ -33,7 +33,7 @@
     </mat-card-content>
 
     <mat-card-actions align="end">
-      <button mat-button color="warn" (click)="invoiceForm.reset()">Reset</button>
+      <button mat-button color="warn" (click)="resetInvoice()">Reset</button>
 
       <button mat-raised-button color="primary" [disabled]="invoiceForm.invalid" (click)="saveInvoice()">
         Save Invoice

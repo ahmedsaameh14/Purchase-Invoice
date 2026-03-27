@@ -1,4 +1,111 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #424242;
+  background-color: #fafafa;
+}
+
+/* Global responsive utilities */
+* {
+  box-sizing: border-box;
+}
+
+/* Improve Material form field focus states globally */
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__leading,
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__trailing {
+  border-color: #1976d2 !important;
+  border-width: 2px !important;
+}
+
+/* Button improvements */
+.mat-mdc-raised-button,
+.mat-mdc-button,
+.mat-mdc-icon-button {
+  border-radius: 6px;
+  font-weight: 500;
+  text-transform: none;
+}
+
+.mat-mdc-raised-button {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Card improvements */
+.mat-mdc-card {
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* Mobile-first responsive design */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+
+  .mat-mdc-card-header {
+    padding: 1rem !important;
+
+    .mat-mdc-card-title {
+      font-size: 1.25rem !important;
+      margin-bottom: 0.25rem !important;
+    }
+
+    .mat-mdc-card-subtitle {
+      font-size: 0.875rem !important;
+    }
+  }
+
+  .mat-mdc-card-content {
+    padding: 1rem !important;
+  }
+
+  .mat-mdc-card-actions {
+    padding: 1rem !important;
+    flex-direction: column;
+
+    .mat-mdc-button,
+    .mat-mdc-raised-button {
+      width: 100%;
+      margin: 0.25rem 0 !important;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .mat-mdc-card-header {
+    padding: 0.75rem !important;
+
+    .mat-mdc-card-title {
+      font-size: 1.1rem !important;
+    }
+  }
+
+  .mat-mdc-card-content {
+    padding: 0.75rem !important;
+  }
+
+  .mat-mdc-card-actions {
+    padding: 0.75rem !important;
+  }
+}

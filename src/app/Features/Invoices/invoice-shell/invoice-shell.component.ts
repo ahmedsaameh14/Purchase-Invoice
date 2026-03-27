@@ -7,6 +7,7 @@ import {
   Validators,
   FormArray,
 } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
@@ -38,6 +39,7 @@ export class InvoiceShellComponent implements OnInit {
   invoiceForm!: FormGroup;
   products = MOCK_PRODUCTS;
   suppliers = MOCK_SUPPLIERS;
+  private itemsValueChangesSub?: Subscription;
 
   constructor(private fb: FormBuilder) {}
 
@@ -75,21 +77,53 @@ export class InvoiceShellComponent implements OnInit {
     return this.invoiceForm.get('header') as FormGroup;
   }
 
+  get canAddItem(): boolean {
+    const items = this.itemsFormArray.controls;
+    if (!items.length) {
+      return true;
+    }
+    const lastItemCode = items[items.length - 1].get('itemCode')?.value;
+    return !!lastItemCode;
+  }
+
   // Add a new row
   addItemRow() {
     const row = this.fb.group({
       itemCode: ['', Validators.required],
       itemName: [{ value: '', disabled: true }],
-      quantity: [1, [Validators.required, Validators.min(1)]],
-      unitPrice: [0, Validators.required],
+      quantity: [{ value: 1, disabled: true }, [Validators.required, Validators.min(1)]],
+      unitPrice: [{ value: 0, disabled: true }, Validators.required],
       lineTotal: [{ value: 0, disabled: true }],
     });
+
+    this.trackItemCodeState(row);
     this.itemsFormArray.push(row);
   }
 
+  private trackItemCodeState(row: FormGroup) {
+    row.get('itemCode')?.valueChanges.subscribe((code: string) => {
+      if (code) {
+        row.get('quantity')?.enable({ emitEvent: false });
+        row.get('unitPrice')?.enable({ emitEvent: false });
+      } else {
+        row.get('quantity')?.disable({ emitEvent: false });
+        row.get('unitPrice')?.disable({ emitEvent: false });
+        row.get('itemName')?.setValue('');
+        row.get('lineTotal')?.setValue(0);
+      }
+    });
+  }
+
+  resetInvoice() {
+    this.itemsValueChangesSub?.unsubscribe();
+    this.initForm();
+    this.setupFormListeners();
+  }
+
   private setupFormListeners() {
-  this.itemsFormArray.valueChanges.subscribe((values: any[]) => {
-    let grandTotal = 0;
+    this.itemsValueChangesSub?.unsubscribe();
+    this.itemsValueChangesSub = this.itemsFormArray.valueChanges.subscribe((values: any[]) => {
+      let grandTotal = 0;
 
     values.forEach((item, index) => {
       // 1. Find Product

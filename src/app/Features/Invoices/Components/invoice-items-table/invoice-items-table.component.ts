@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { Product } from '../../Models/product.model';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-invoice-items-table',
@@ -20,7 +21,8 @@ import { Product } from '../../Models/product.model';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule
   ],
   templateUrl: './invoice-items-table.component.html',
   styleUrl: './invoice-items-table.component.css',
@@ -28,6 +30,7 @@ import { Product } from '../../Models/product.model';
 export class InvoiceItemsTableComponent {
   @Input() itemsFormArray!: FormArray;
   @Input() products: Product[] = [];
+  @Input() canAddItem = true;
 
   removeRow(index: number) {
     this.itemsFormArray.removeAt(index);
